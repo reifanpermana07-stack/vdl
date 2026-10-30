@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vdlabellaflorist - Florist 24 Jam</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fdf8f6', 100: '#f2e8e5', 200: '#e5d0cb', 300: '#d3b2aa', 400: '#bd8e83',
+                            500: '#a66e63', 600: '#8e544a', 700: '#75433a', 800: '#613832', 900: '#51312c', 950: '#3a211d'
+                        },
+                        sage: { 50: '#f4f7f4', 100: '#e3ebe3', 500: '#87a08b', 700: '#4a5d4e' },
+                        cream: '#FAF6F0',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        };
+    </script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF6F0; color: #332725; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(229, 208, 203, 0.6);
+        }
+        .ig-gradient-bg {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        .ig-gradient-text {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f2e8e5; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #bd8e83; border-radius: 10px; }
+
+        @keyframes toast-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+        .toast { animation: toast-in .25s ease-out; }
+    </style>
+</head>
+
+<body class="bg-cream text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Announcement Bar -->
+    <div class="bg-brand-900 text-brand-100 text-[11px] sm:text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2 tracking-wide">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span><span class="font-bold text-amber-300">BUKA 24 JAM NONSTOP</span> — Siap Melayani Pemesanan & Pengiriman Bunga Setiap Hari ke Seluruh Area!</span>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 glass-card shadow-sm transition-all duration-300" id="header">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:bg-brand-700 transition">vd</div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-brand-900 block leading-none">vdlabellaflorist</span>
+                    <span class="text-[10px] tracking-widest uppercase text-emerald-700 font-extrabold flex items-center gap-1 mt-0.5">
+                        <i class="fa-solid fa-clock text-[9px]"></i> Buka Setiap Hari (24 Jam)
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-7 font-medium text-xs uppercase tracking-wider text-brand-900">
+                <a href="#hero" class="hover:text-brand-500 transition">Beranda</a>
+                <a href="#video-showcase" class="hover:text-red-600 transition font-bold text-red-800 flex items-center gap-1">
+                    <i class="fa-solid fa-circle-play text-red-600 text-sm animate-pulse"></i> Showcase Video
+                </a>
+                <a href="#custom-bunga" class="hover:text-emerald-700 transition font-bold text-emerald-800 flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Custom Bunga 
+                </a>
+                <a href="#layanan" class="hover:text-brand-500 transition">Layanan Utama</a>
+                <a href="#katalog" class="hover:text-brand-500 transition">Katalog Bunga</a>
+                <a href="#kontak" class="hover:text-brand-500 transition">Lokasi & Maps</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <a data-ig target="_blank" rel="noopener noreferrer"
+                   class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full ig-gradient-bg text-white text-xs font-bold shadow-sm hover:opacity-90 transition">
+                    <i class="fa-brands fa-instagram text-sm"></i><span>@vdlabellaflorist</span>
+                </a>
+
+                <button type="button" data-action="toggle-cart" class="relative p-2.5 rounded-full hover:bg-brand-100 text-brand-800 transition" aria-label="Keranjang Belanja">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cartCountBadge" class="absolute -top-1 -right-1 bg-brand-600 text-white text-[10px] font-bold w-5 h-5 rounded-full items-center justify-center hidden">0</span>
+                </button>
+
+                <a data-wa="Halo vdlabellaflorist, saya ingin memesan bunga" target="_blank" rel="noopener noreferrer"
+                   class="hidden md:inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-xs font-bold shadow-sm transition">
+                    <i class="fa-brands fa-whatsapp text-sm"></i><span>CS</span>
+                </a>
+
+                <button type="button" data-action="toggle-menu" class="lg:hidden p-2 rounded-lg text-brand-900 hover:bg-brand-100" aria-label="Menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-cream border-t border-brand-200 px-6 py-4 space-y-3">
+            <a href="#hero" class="block py-1 text-brand-900 font-medium">Beranda</a>
+            <a href="#video-showcase" class="flex items-center gap-2 py-1 text-red-700 font-bold">
+                <i class="fa-solid fa-video text-red-600"></i> Video Showcase Giant Bouquet
+            </a>
+            <a href="#custom-bunga" class="flex items-center gap-2 py-1 text-emerald-700 font-bold">
+                <i class="fa-brands fa-whatsapp text-base"></i> Custom Bunga via WA (24 Jam)
+            </a>
+            <a href="#layanan" class="block py-1 text-brand-900 font-medium">Layanan Utama</a>
+            <a href="#katalog" class="block py-1 text-brand-900 font-medium">Katalog Bunga Lengkap</a>
+            <a href="#instagram-feed" class="flex items-center gap-2 py-1 text-pink-600 font-bold">
+                <i class="fa-brands fa-instagram text-base"></i> Live Feed Instagram @vdlabellaflorist
+            </a>
+            <a href="#kontak" class="block py-1 text-brand-900 font-medium">Lokasi Google Maps</a>
+            <div class="pt-2">
+                <a data-wa="Halo vdlabellaflorist, saya ingin konsultasi bunga" target="_blank" rel="noopener noreferrer"
+                   class="w-full flex items-center justify-center gap-2 bg-emerald-600 text-white py-2.5 rounded-xl font-semibold text-xs">
+                    <i class="fa-brands fa-whatsapp text-base"></i> Hubungi WA (+62 838-2011-7203)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Floating Buttons -->
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+        <a data-ig target="_blank" rel="noopener noreferrer" title="Kunjungi Instagram @vdlabellaflorist"
+           class="ig-gradient-bg text-white p-3.5 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center group">
+            <i class="fa-brands fa-instagram text-2xl"></i>
+            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-500 ease-in-out text-xs font-bold">IG @vdlabellaflorist</span>
+        </a>
+        <a data-wa="Halo vdlabellaflorist, saya ingin pesan bunga" target="_blank" rel="noopener noreferrer" title="Chat via WhatsApp 24 Jam"
+           class="bg-emerald-500 text-white p-3.5 rounded-full shadow-2xl hover:bg-emerald-600 hover:scale-110 transition-all duration-300 flex items-center justify-center group">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+            <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs group-hover:ml-2 transition-all duration-500 ease-in-out text-xs font-bold">Chat WA Fast Response (24 Jam)</span>
+        </a>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="fixed top-24 right-5 z-50 flex flex-col gap-2"></div>
+
+    <main class="flex-grow">
+
+        <!-- Hero -->
+        <section id="hero" class="relative py-12 md:py-16 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider border border-emerald-200 shadow-sm">
+                            <i class="fa-solid fa-clock text-emerald-600"></i> Buka Setiap Hari — 24 Jam Nonstop
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-900 leading-tight">
+                            Karangan Bunga Luxury, <span class="text-red-700 italic">Buket Mawar Jumbo</span> & Dekorasi <span class="ig-gradient-text italic">Mobil Pengantin</span>
+                        </h1>
+                        <p class="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Selamat datang di <strong>vdlabellaflorist</strong>. Kami menyediakan Hand Bouquet Luxury, Giant Red Rose Bouquet, Bunga Papan Pernikahan/Duka Cita, Bloom Box, hingga Dekorasi Mobil Pengantin secara kustom dengan pengerjaan cepat dan pemesanan 24 jam.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-2">
+                            <a href="#video-showcase" class="w-full sm:w-auto px-7 py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition text-center text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-circle-play text-base"></i><span>Lihat Highlight Video</span>
+                            </a>
+                            <a href="#custom-bunga" class="w-full sm:w-auto px-7 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-full shadow-lg transition text-center text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-lg"></i><span>Pesan Custom via WA</span>
+                            </a>
+                            <a href="#katalog" class="w-full sm:w-auto px-7 py-3.5 bg-white hover:bg-brand-50 text-brand-900 font-bold rounded-full border border-brand-300 transition text-center text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-store"></i>Katalog
+                            </a>
+                        </div>
+
+                        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-brand-200/60 max-w-lg mx-auto lg:mx-0 text-left">
+                            <div>
+                                <p class="text-[11px] text-gray-500 uppercase font-bold tracking-wide">Jam Operasional</p>
+                                <p class="text-xs font-extrabold text-emerald-700">24 Jam Nonstop</p>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-gray-500 uppercase font-bold tracking-wide">Spesial Highlight</p>
+                                <p class="text-xs font-bold text-red-700">Giant Rose Bouquet</p>
+                            </div>
+                            <div>
+                                <p class="text-[11px] text-gray-500 uppercase font-bold tracking-wide">Pemesanan</p>
+                                <p class="text-xs font-bold text-brand-900">Langsung via WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual -->
+                    <div class="lg:col-span-5 relative">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-300 via-pink-200 to-amber-200 rounded-3xl transform rotate-2 blur-sm"></div>
+
+                            <div class="relative bg-white p-3 rounded-3xl shadow-2xl border border-brand-200">
+                                <div class="flex items-center justify-between p-2 mb-2 border-b border-gray-100">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full p-[2px] ig-gradient-bg">
+                                            <div class="w-full h-full bg-white rounded-full p-[1px]">
+                                                <div class="w-full h-full rounded-full bg-brand-600 text-white flex items-center justify-center font-serif text-xs font-bold">vd</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-gray-900 leading-tight">vdlabellaflorist</p>
+                                            <p class="text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+                                                <i class="fa-solid fa-circle text-[8px]"></i> Online 24 Jam
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <a href="#video-showcase" class="text-xs font-bold text-red-600 hover:underline flex items-center gap-1">
+                                        <i class="fa-solid fa-play text-[10px]"></i> Video Preview
+                                    </a>
+                                </div>
+
+                                <div class="relative rounded-2xl overflow-hidden shadow-inner group">
+                                    <img id="heroImage" alt="vdlabellaflorist Giant Red Rose Bouquet Showcase" class="object-cover w-full h-[360px] group-hover:scale-105 transition duration-500">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex flex-col justify-end p-4">
+                                        <span class="bg-red-600 text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider w-fit mb-1 shadow">Highlight Best Seller</span>
+                                        <h3 class="text-white font-serif font-bold text-lg">Giant Luxury Red Rose Bouquet</h3>
+                                        <p class="text-gray-200 text-xs">Aksen Mawar Merah Segar & White Baby Breath Premium</p>
+                                    </div>
+                                </div>
+
+                                <div class="p-3 bg-brand-50 rounded-xl mt-2 border border-brand-200 flex items-center justify-between">
+                                    <div>
+                                        <p class="text-xs font-bold text-brand-900">100+ Tangkai Mawar & White Filler</p>
+                                        <p class="text-[10px] text-gray-500">Korean Style Crafting & Ribbon Luxury</p>
+                                    </div>
+                                    <a href="#video-showcase" class="text-xs font-bold text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-full transition shadow">Tonton Video</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Showcase -->
+        <section id="video-showcase" class="py-16 bg-gradient-to-b from-brand-900 via-brand-950 to-brand-900 text-white relative overflow-hidden border-y border-brand-800">
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/30 text-xs font-bold uppercase tracking-widest">
+                        <i class="fa-solid fa-fire text-red-400"></i> Showcase Video
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight">Galeri Video Highlight Karya Kami</h2>
+                    <p class="text-brand-200 text-xs sm:text-base leading-relaxed max-w-2xl mx-auto">
+                        Lihat tampilan asli dari berbagai karangan bunga eksklusif buatan <strong>vdlabellaflorist</strong>. 
+                    </p>
+                </div>
+
+                <div id="reelsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch"></div>
+            </div>
+        </section>
+
+        <!-- Layanan Utama -->
+        <section id="layanan" class="py-14 bg-white border-y border-brand-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-3xl mx-auto space-y-2">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600 bg-brand-100 px-3.5 py-1 rounded-full border border-brand-200">Layanan Spesialis Kami</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-brand-900">Solusi Bunga Lengkap untuk Setiap Momen</h2>
+                    <p class="text-gray-600 text-xs sm:text-sm">Siap melayani pemesanan dadakan maupun terencana selama 24 jam sehari.</p>
+                </div>
+
+                <div id="servicesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Form Custom Order -->
+        <section id="custom-bunga" class="py-16 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-3xl border border-brand-200 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+
+                    <!-- Kolom Kiri -->
+                    <div class="lg:col-span-5 bg-gradient-to-br from-brand-900 via-brand-800 to-brand-900 p-8 text-white flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 px-3 py-1 rounded-full text-xs font-bold">
+                                <i class="fa-solid fa-bolt"></i> Respon Cepat 24 Jam
+                            </div>
+                            <h2 class="font-serif text-3xl sm:text-4xl font-bold leading-tight">Formulir Custom Bunga vdlabellaflorist</h2>
+                            <p class="text-brand-200 text-xs sm:text-sm leading-relaxed">
+                                Punya ide buket mawar jumbo, bunga papan pernikahan, atau rincian dekorasi mobil pengantin sendiri? Isilah formulir singkat ini, lalu kirim langsung ke WhatsApp toko kami.
+                            </p>
+                        </div>
+
+                        <div class="space-y-4 pt-4 border-t border-brand-700/80">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-emerald-600 flex items-center justify-center text-lg shrink-0"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div>
+                                    <p class="text-[10px] text-brand-300 uppercase font-bold">Nomor WhatsApp Resmi</p>
+                                    <p class="text-sm font-extrabold text-white">+62 838-2011-7203</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-brand-700 flex items-center justify-center text-lg shrink-0 text-amber-300"><i class="fa-solid fa-clock"></i></div>
+                                <div>
+                                    <p class="text-[10px] text-brand-300 uppercase font-bold">Jam Operasional Toko</p>
+                                    <p class="text-xs font-bold text-white">Buka Setiap Hari 24 Jam Nonstop</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Kanan: Form -->
+                    <div class="lg:col-span-7 p-6 sm:p-10 space-y-5">
+                        <h3 class="font-serif text-xl font-bold text-brand-900">Rincian Pesanan Kustom Anda</h3>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="custServiceType" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">1. Jenis Rangkaian</label>
+                                <select id="custServiceType" class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:outline-none"></select>
+                            </div>
+                            <div>
+                                <label for="custColorTheme" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">2. Tema Warna / Jenis Bunga</label>
+                                <input type="text" id="custColorTheme" placeholder="Contoh: Red Velvet & Baby Breath, Soft Pink..." class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="custBudget" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">3. Estimasi Budget / Anggaran (Rp)</label>
+                                <select id="custBudget" class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                                    <option value="Rp 250.000 - Rp 500.000">Rp 250.000 - Rp 500.000</option>
+                                    <option value="Rp 500.000 - Rp 1.000.000">Rp 500.000 - Rp 1.000.000</option>
+                                    <option value="Rp 1.000.000 - Rp 2.500.000">Rp 1.000.000 - Rp 2.500.000 (Giant Bouquet)</option>
+                                    <option value="Diatas Rp 2.500.000">Diatas Rp 2.500.000 (Luxury Request)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="custDeliveryTime" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">4. Tanggal & Jam Kirim</label>
+                                <input type="datetime-local" id="custDeliveryTime" class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="custSenderName" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">5. Nama Anda</label>
+                                <input type="text" id="custSenderName" placeholder="Masukkan nama pemesan..." class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                            <div>
+                                <label for="custDeliveryAddress" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">6. Alamat / Lokasi Pengiriman</label>
+                                <input type="text" id="custDeliveryAddress" placeholder="Masukkan kota / kecamatan / alamat lengkap..." class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="custCardText" class="block text-xs font-bold uppercase text-brand-900 mb-1.5">7. Tulisan Ucapan (Untuk Kartu / Bunga Papan)</label>
+                            <textarea id="custCardText" rows="3" placeholder="Contoh: 'Happy Birthday My Love - Wishing You Endless Happiness'..." class="w-full bg-cream/60 border border-brand-200 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                        </div>
+
+                        <button type="button" data-action="send-custom" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-2xl shadow-lg transition text-xs uppercase tracking-wider flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Kirim Rincian Pesanan ke WA CS</span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Katalog Produk -->
+        <section id="katalog" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Pilihan Rangkaian</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-brand-900 mt-1">Katalog Bunga vdlabellaflorist</h2>
+                    </div>
+                    <div id="categoryFilters" class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar"></div>
+                </div>
+
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Instagram Feed -->
+        <section id="instagram-feed" class="py-16 bg-white border-y border-brand-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-brand-100 pb-6">
+                    <div>
+                        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-pink-600 bg-pink-50 px-3 py-1 rounded-full border border-pink-200">
+                            <i class="fa-brands fa-instagram"></i> Live Feed Instagram
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-brand-900 mt-2">Galeri @vdlabellaflorist</h2>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a data-ig target="_blank" rel="noopener noreferrer"
+                           class="px-5 py-2.5 rounded-full ig-gradient-bg text-white text-xs font-bold hover:opacity-90 transition flex items-center gap-2 shadow-sm">
+                            <i class="fa-brands fa-instagram text-base"></i> Buka Profile Instagram
+                        </a>
+                        <button type="button" data-action="toggle-import" class="px-4 py-2.5 rounded-full bg-brand-100 hover:bg-brand-200 text-brand-900 text-xs font-bold transition flex items-center gap-1.5 border border-brand-300">
+                            <i class="fa-solid fa-plus-circle text-brand-600"></i> Impor dari IG
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Panel Impor Manual -->
+                <div id="importPanel" class="hidden bg-brand-50 p-6 rounded-3xl border-2 border-dashed border-brand-300 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-serif font-bold text-brand-900 text-lg flex items-center gap-2">
+                            <i class="fa-brands fa-instagram text-pink-600"></i> Impor Postingan Instagram @vdlabellaflorist
+                        </h3>
+                        <button type="button" data-action="toggle-import" class="text-gray-400 hover:text-gray-600 text-sm">
+                            <i class="fa-solid fa-xmark"></i> Tutup
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3">
+                        <input type="text" id="igPostUrl" placeholder="URL Post Instagram..." class="md:col-span-5 bg-white border border-brand-200 rounded-xl p-3 text-xs focus:outline-none">
+                        <input type="text" id="igPostTitle" placeholder="Nama Bunga / Rangkaian" class="md:col-span-3 bg-white border border-brand-200 rounded-xl p-3 text-xs focus:outline-none">
+                        <input type="number" id="igPostPrice" placeholder="Harga (Rp)" class="md:col-span-2 bg-white border border-brand-200 rounded-xl p-3 text-xs focus:outline-none">
+                        <button type="button" data-action="import-manual" class="md:col-span-2 bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-xl text-xs transition flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> Impor ke Katalog
+                        </button>
+                    </div>
+                </div>
+
+                <div id="igFeedGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- Lokasi & Kontak -->
+        <section id="kontak" class="py-16 bg-cream">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+                    <div class="lg:col-span-5 space-y-5">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Alamat & Navigasi</span>
+                            <h2 class="text-3xl font-bold text-brand-900 mt-1">Lokasi Toko vdlabellaflorist</h2>
+                            <p class="text-xs sm:text-sm text-gray-600 mt-2">Kunjungi lokasi fisik toko kami atau pesan secara daring dengan layanan pengiriman 24 jam nonstop.</p>
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mt-4 mb-2">Temukan Kami di</p>
+                            <div data-socials data-variant="pill" class="flex flex-wrap gap-2"></div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-900">
+                                <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0 text-lg"><i class="fa-solid fa-clock"></i></div>
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase text-emerald-800">Jam Operasional Toko</h4>
+                                    <p class="text-xs font-extrabold text-emerald-900 mt-0.5">Buka Setiap Hari (24 Jam Nonstop)</p>
+                                </div>
+                            </div>
+
+                            <a data-wa target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-brand-200 shadow-sm hover:border-emerald-300 transition">
+                                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 text-lg"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div>
+                                    <h4 class="text-[10px] uppercase font-bold text-gray-400">WhatsApp Resmi CS</h4>
+                                    <p class="text-xs font-bold text-brand-900 mt-0.5">+62 838-2011-7203</p>
+                                </div>
+                            </a>
+
+                            <a data-maps target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-brand-200 shadow-sm hover:border-brand-300 transition">
+                                <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center shrink-0 text-lg"><i class="fa-solid fa-location-dot"></i></div>
+                                <div>
+                                    <h4 class="text-[10px] uppercase font-bold text-gray-400">Google Maps</h4>
+                                    <p class="text-xs font-bold text-brand-900 mt-0.5">Toko Bunga vdlabellaflorist</p>
+                                    <span class="text-[11px] text-brand-600 font-semibold inline-block">Klik untuk Petunjuk Rute &rarr;</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 bg-white p-4 rounded-3xl border border-brand-200 shadow-lg">
+                        <div class="relative w-full h-80 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
+                            <div id="mapBg" class="absolute inset-0 bg-cover bg-center opacity-80"></div>
+                            <div class="absolute inset-0 bg-brand-900/60 backdrop-blur-[2px]"></div>
+
+                            <div class="relative z-10 text-center text-white p-6 space-y-3">
+                                <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mx-auto text-amber-300 text-xl shadow-inner">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </div>
+                                <h3 class="font-serif text-2xl font-bold">Navigasi vdlabellaflorist</h3>
+                                <p class="text-xs text-gray-200 max-w-sm mx-auto">Klik tombol di bawah ini untuk membuka lokasi toko kami di aplikasi Google Maps.</p>
+                                <a data-maps target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-3 rounded-full text-xs font-bold transition shadow-lg">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i><span>Buka Google Maps Toko</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Detail Produk -->
+    <div id="productModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-brand-200 relative max-h-[90vh] flex flex-col">
+            <button type="button" data-action="close-product" aria-label="Tutup" class="absolute top-4 right-4 z-10 w-9 h-9 bg-white/80 hover:bg-white rounded-full flex items-center justify-center text-gray-600 shadow-md">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="productModalContent" class="overflow-y-auto custom-scrollbar p-6 space-y-5"></div>
+        </div>
+    </div>
+
+    <!-- Keranjang Sidebar -->
+    <div id="cartModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden justify-end">
+        <div class="w-screen max-w-md h-full bg-white shadow-2xl flex flex-col justify-between">
+
+            <div class="p-6 bg-cream border-b border-brand-200 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bag-shopping text-brand-600 text-xl"></i>
+                    <h3 class="font-serif text-xl font-bold text-brand-900">Keranjang Belanja</h3>
+                </div>
+                <button type="button" data-action="toggle-cart" aria-label="Tutup" class="p-2 text-gray-400 hover:text-gray-600 rounded-full">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div id="cartItemsContainer" class="p-6 flex-1 overflow-y-auto space-y-4 custom-scrollbar"></div>
+
+            <div class="p-6 bg-cream border-t border-brand-200 space-y-4">
+                <div class="space-y-3">
+                    <div>
+                        <label for="custName" class="block text-[10px] font-bold uppercase text-brand-900 mb-1">Nama Pemesan</label>
+                        <input type="text" id="custName" placeholder="Masukkan nama Anda..." class="w-full bg-white border border-brand-200 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="custDate" class="block text-[10px] font-bold uppercase text-brand-900 mb-1">Tanggal & Jam Pengiriman</label>
+                        <input type="datetime-local" id="custDate" class="w-full bg-white border border-brand-200 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="custAddress" class="block text-[10px] font-bold uppercase text-brand-900 mb-1">Alamat Lengkap / Lokasi Kirim</label>
+                        <input type="text" id="custAddress" placeholder="Masukkan alamat penerima..." class="w-full bg-white border border-brand-200 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label for="custCardNote" class="block text-[10px] font-bold uppercase text-brand-900 mb-1">Pesan Kartu Ucapan Gratis</label>
+                        <textarea id="custCardNote" rows="2" placeholder="Tuliskan ucapan kartu hangat..." class="w-full bg-white border border-brand-200 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-brand-200 flex items-center justify-between">
+                    <span class="text-xs font-bold text-gray-600">Total Pembayaran</span>
+                    <span class="text-base font-bold text-brand-600" id="cartTotal">Rp 0</span>
+                </div>
+
+                <button type="button" data-action="checkout" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-lg"></i><span>Kirim Pesanan ke WhatsApp (24 Jam)</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-900 text-brand-100 py-12 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-full bg-brand-600 text-white flex items-center justify-center font-serif text-lg font-bold">vd</div>
+                        <span class="font-serif text-xl font-bold text-white">vdlabellaflorist</span>
+                    </div>
+                    <p class="text-xs text-brand-200 leading-relaxed">Florist terpercaya menyediakan Buket Mawar Jumbo, Bunga Papan Pernikahan, Dekorasi Mobil Pengantin, dan Bloom Box.</p>
+                    <div data-socials data-variant="icon" class="flex flex-wrap gap-2"></div>
+                    <div class="text-[11px] font-bold text-emerald-400 bg-brand-800 px-3 py-1.5 rounded-lg inline-block border border-brand-700">
+                        <i class="fa-solid fa-clock mr-1"></i> Buka Setiap Hari (24 Jam Nonstop)
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-xs font-bold text-white mb-3 uppercase tracking-wider">Navigasi Web</h4>
+                    <ul class="space-y-2 text-xs text-brand-200">
+                        <li><a href="#hero" class="hover:text-white transition">Beranda</a></li>
+                        <li><a href="#video-showcase" class="hover:text-white transition">Highlight Video Jumbo Bouquet</a></li>
+                        <li><a href="#custom-bunga" class="hover:text-white transition">Custom Bunga WA</a></li>
+                        <li><a href="#layanan" class="hover:text-white transition">Layanan Utama</a></li>
+                        <li><a href="#katalog" class="hover:text-white transition">Katalog Bunga</a></li>
+                        <li><a href="#kontak" class="hover:text-white transition">Lokasi Google Maps</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-xs font-bold text-white mb-3 uppercase tracking-wider">Layanan Utama</h4>
+                    <ul class="space-y-2 text-xs text-brand-200">
+                        <li><a href="#katalog" data-action="filter" data-category="mawar" class="hover:text-white transition">Giant Red Rose Bouquet</a></li>
+                        <li><a href="#katalog" data-action="filter" data-category="papan" class="hover:text-white transition">Bunga Papan Pernikahan</a></li>
+                        <li><a href="#katalog" data-action="filter" data-category="mobil" class="hover:text-white transition">Dekorasi Mobil Pengantin</a></li>
+                        <li><a href="#katalog" data-action="filter" data-category="mawar" class="hover:text-white transition">Hand Bouquet Mawar</a></li>
+                        <li><a href="#katalog" data-action="filter" data-category="buket" class="hover:text-white transition">Buket Lily & Mix</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-xs font-bold text-white mb-3 uppercase tracking-wider">Kontak Toko</h4>
+                    <ul class="space-y-2 text-xs text-brand-200">
+                        <li><i class="fa-brands fa-whatsapp text-emerald-400 mr-2"></i> +62 838-2011-7203</li>
+                        <li><i class="fa-brands fa-instagram text-pink-400 mr-2"></i> @vdlabellaflorist</li>
+                        <li><i class="fa-solid fa-clock text-amber-400 mr-2"></i> 24 Jam Nonstop</li>
+                        <li class="pt-2">
+                            <a data-maps target="_blank" rel="noopener noreferrer" class="inline-block px-3 py-1.5 bg-brand-800 hover:bg-brand-700 text-white rounded-lg text-[10px] font-semibold transition">
+                                <i class="fa-solid fa-location-arrow mr-1"></i> Buka Google Maps
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-brand-800 text-center text-xs text-brand-300">
+                <p>&copy; 2026 vdlabellaflorist. WhatsApp: +62 838-2011-7203 | Instagram: @vdlabellaflorist.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+    (() => {
+        'use strict';
+
+        /* 1. KONFIGURASI */
+        const CONFIG = {
+            waNumber: '6283820117203',
+            igUrl:    'https://www.instagram.com/vdlabellaflorist?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==',
+            // LINK POSTINGAN INSTAGRAM PER PRODUK
+            // Tempel link post IG di sini (contoh: 'https://www.instagram.com/p/XXXXXXXXX/').
+            // Kalau dikosongkan, tombol IG akan membuka profil @vdlabellaflorist.
+            postUrls: {
+                'buket-mawar-merah-jumbo':   'https://www.instagram.com/p/DfGnbAhE_Tl/?dlrf=MTlpbHJoM2ZiZzZyNw==',
+                'buket-lily-pink-550':       'https://www.instagram.com/p/Del1SP6Ey6K/?srtk=b2Rjc2V0b2NuZm1q',
+                'buket-mawar-pink-550':      'https://www.instagram.com/p/DfEuXqNEy2l/?exln=eDkzNjJtZzJiNzRx',
+                'buket-colorful-mix-500':    'https://www.instagram.com/p/DfFeL5EE1OA/?vrfl=N2s4MzY0dmQ2dG41',
+                'buket-lily-gerbera-450':    'https://www.instagram.com/p/DfCeuOFkzcw/?mdxt=NGlhZ3MzMW1xd3pp',
+                'dekor-mobil-pengantin':     '',
+                'bunga-papan-grand-opening': ''
+            },
+            mapsUrl:  'https://maps.app.goo.gl/7fzZgkyCToEC7jBg7',
+            social: {
+                tiktok:   '',
+                facebook: '',
+                youtube:  ''
+            }
+        };
+
+        /* 2. DATA */
+        const IMG = 'assets/images/';
+        const postUrl = img => CONFIG.postUrls[img] || CONFIG.igUrl;
+        const VID = 'assets/videos/';
+        const MAP_BG = IMG + 'toko.jpg';
+
+        const CATEGORIES = [
+            { key: 'all',   label: 'Semua Produk' },
+            { key: 'mawar', label: 'Buket Mawar' },
+            { key: 'buket', label: 'Buket Lily & Mix' },
+            { key: 'papan', label: 'Bunga Papan' },
+            { key: 'mobil', label: 'Dekor Mobil Pengantin' }
+        ];
+
+        const CUSTOM_SERVICE_OPTIONS = [
+            'Buket Mawar Merah Jumbo (Giant Rose Bouquet)',
+            'Hand Bouquet (Buket Tangan Reguler)',
+            'Bunga Papan Pernikahan (Wedding Board)',
+            'Bunga Papan Duka Cita / Grand Opening',
+            'Dekorasi Mobil Pengantin (Wedding Car)',
+            'Money Bouquet (Buket Uang)',
+            'Bloom Box & Bunga Meja',
+            'Standing Flower'
+        ];
+
+        const REEL_THEMES = {
+            red:   { border: 'border-red-500/30 hover:border-red-500',     avatar: 'bg-red-600',   badge: 'bg-red-600 text-white' },
+            amber: { border: 'border-amber-500/30 hover:border-amber-400', avatar: 'bg-brand-600', badge: 'bg-amber-500 text-black' },
+            pink:  { border: 'border-pink-500/30 hover:border-pink-500',   avatar: 'bg-pink-600',  badge: 'bg-pink-600 text-white' }
+        };
+
+        // KARTU VIDEO SHOWCASE - Memastikan atribut autoplay loop muted playsinline terpasang!
+        const REELS = [
+            {
+                id: 'reel1', theme: 'red', badge: 'Buket Jumbo',
+                src: VID + 'buket-mawar-merah-jumbo.mp4', poster: IMG + 'poster-buket-mawar-merah-jumbo.jpg',
+                title: 'Buket Mawar Merah Jumbo (100 Tangkai)',
+                desc: '100+ mawar merah fresh dengan bingkai white baby breath & pita sutra.',
+                price: 650000, cta: 'Pesan Buket Ini'
+            },
+            {
+                id: 'reel2', theme: 'amber', badge: 'Buket Mix',
+                src: VID + 'buket-colorful-mix.mp4', poster: IMG + 'poster-buket-colorful-mix.jpg',
+                title: 'Buket Colorful Mix Gerbera, Mawar & Lily',
+                desc: 'Perpaduan gerbera, mawar, lily, dan krisan warna-warni dengan wrapping koran klasik.',
+                price: 500000, cta: 'Pesan Buket Ini'
+            },
+            {
+                id: 'reel3', theme: 'pink', badge: 'Buket Pink',
+                src: VID + 'buket-mawar-pink.mp4', poster: IMG + 'poster-buket-mawar-pink.jpg',
+                title: 'Buket Mawar Pink, Lily & Sedap Malam',
+                desc: 'Mawar pink dan fuchsia, lily, serta sedap malam dengan wrapping pink transparan & pita.',
+                price: 550000, cta: 'Pesan Buket Ini'
+            }
+        ];
+
+        const SERVICES = [
+            {
+                icon: 'fa-spa', iconBg: 'bg-brand-500', card: '', link: 'text-brand-600 hover:text-brand-700',
+                title: 'Hand Bouquet / Buket',
+                desc: 'Buket mawar segar, buket jumbo 100+ tangkai, money bouquet, dan wrapping style Korean modern.',
+                cta: 'Pesan Kustom', service: 'Hand Bouquet (Buket Tangan Reguler)'
+            },
+            {
+                icon: 'fa-square-poll-vertical', iconBg: 'bg-amber-500', card: 'border-l-4 border-l-amber-500', link: 'text-amber-700 hover:underline',
+                title: 'Bunga Papan Pernikahan',
+                desc: 'Bunga papan ucapan Happy Wedding, Grand Opening, dan Duka Cita ukuran jumbo & reguler.',
+                cta: 'Pesan Bunga Papan', service: 'Bunga Papan Pernikahan (Wedding Board)'
+            },
+            {
+                icon: 'fa-car-side', iconBg: 'bg-pink-500', card: 'border-l-4 border-l-pink-500', link: 'text-pink-700 hover:underline',
+                title: 'Dekorasi Mobil Pengantin',
+                desc: 'Rangkaian bunga segar/artificial elegan untuk kap mobil pengantin lengkap dengan pita kain.',
+                cta: 'Pesan Dekor Mobil', service: 'Dekorasi Mobil Pengantin (Wedding Car)'
+            },
+            {
+                icon: 'fa-box-tissue', iconBg: 'bg-sage-500', card: '', link: 'text-brand-600 hover:text-brand-700',
+                title: 'Bloom Box & Bunga Meja',
+                desc: 'Arrangement bunga meja vas kaca, box beludru, dan standing flower mewah untuk acara.',
+                cta: 'Pesan Bunga Meja', service: 'Bloom Box & Bunga Meja'
+            }
+        ];
+
+        const instagramFeedData = [
+            {
+                id: 'ig0', category: 'mawar', price: 650000, image: IMG + 'buket-mawar-merah-jumbo.jpg',
+                title: 'Buket Mawar Merah Jumbo (100 Tangkai)',
+                caption: 'Rangkaian mawar merah segar ukuran jumbo dengan balutan kertas wrapping putih dan hiasan bunga baby breath.'
+            },
+            {
+                id: 'ig1', category: 'buket', price: 550000, image: IMG + 'buket-lily-pink-550.jpg',
+                title: 'Buket Lily Pink & Gerbera Premium',
+                caption: 'Lily pink besar dipadukan mawar, gerbera, dan baby breath dengan wrapping pink gold edge.'
+            },
+            {
+                id: 'ig2', category: 'mawar', price: 550000, image: IMG + 'buket-mawar-pink-550.jpg',
+                title: 'Buket Mawar Pink, Lily & Sedap Malam',
+                caption: 'Mawar pink dan fuchsia, lily, serta sedap malam dengan wrapping pink transparan dan pita.'
+            },
+            {
+                id: 'ig3', category: 'buket', price: 500000, image: IMG + 'buket-colorful-mix-500.jpg',
+                title: 'Buket Colorful Mix Gerbera, Mawar & Lily',
+                caption: 'Gerbera, mawar, lily, dan krisan warna-warni dengan wrapping koran klasik dan pita putih.'
+            },
+            {
+                id: 'ig4', category: 'buket', price: 450000, image: IMG + 'buket-lily-gerbera-450.jpg',
+                title: 'Buket Lily, Gerbera & Mawar Pink',
+                caption: 'Lily, gerbera, krisan, dan mawar pink dengan wrapping pink lembut dan baby breath.'
+            },
+            {
+                id: 'ig5', category: 'mobil', price: null, image: IMG + 'dekor-mobil-pengantin.jpg',
+                title: 'Dekorasi Mobil Pengantin Bunga Putih & Pink',
+                caption: 'Rangkaian mawar putih dan bunga pink untuk kap depan mobil pengantin, dilengkapi pita kain tile halus.'
+            },
+            {
+                id: 'ig6', category: 'papan', price: null, image: IMG + 'bunga-papan-grand-opening.jpg',
+                title: 'Bunga Papan Congratulations / Grand Opening',
+                caption: 'Karangan bunga papan ucapan selamat untuk grand opening dengan bunga segar di bagian atas dan bawah.'
+            }
+        ].map(post => ({ ...post, igUrl: postUrl(post.image.split('/').pop().replace('.jpg','')) }));
+
+        const products = [
+            {
+                id: 'p0', category: 'mawar', price: 650000, image: IMG + 'buket-mawar-merah-jumbo.jpg', isIgImported: true,
+                name: 'Buket Mawar Merah Jumbo (100 Tangkai)',
+                description: 'Rangkaian mawar merah segar ukuran jumbo dengan balutan kertas wrapping putih dan hiasan bunga baby breath.'
+            },
+            {
+                id: 'p1', category: 'buket', price: 550000, image: IMG + 'buket-lily-pink-550.jpg', isIgImported: true,
+                name: 'Buket Lily Pink & Gerbera Premium',
+                description: 'Lily pink besar dipadukan mawar, gerbera, dan baby breath dengan wrapping pink gold edge.'
+            },
+            {
+                id: 'p2', category: 'mawar', price: 550000, image: IMG + 'buket-mawar-pink-550.jpg', isIgImported: true,
+                name: 'Buket Mawar Pink, Lily & Sedap Malam',
+                description: 'Mawar pink dan fuchsia, lily, serta sedap malam dengan wrapping pink transparan dan pita.'
+            },
+            {
+                id: 'p3', category: 'buket', price: 500000, image: IMG + 'buket-colorful-mix-500.jpg', isIgImported: true,
+                name: 'Buket Colorful Mix Gerbera, Mawar & Lily',
+                description: 'Gerbera, mawar, lily, dan krisan warna-warni dengan wrapping koran klasik dan pita putih.'
+            },
+            {
+                id: 'p4', category: 'buket', price: 450000, image: IMG + 'buket-lily-gerbera-450.jpg', isIgImported: true,
+                name: 'Buket Lily, Gerbera & Mawar Pink',
+                description: 'Lily, gerbera, krisan, dan mawar pink dengan wrapping pink lembut dan baby breath.'
+            },
+            {
+                id: 'p5', category: 'mobil', price: null, image: IMG + 'dekor-mobil-pengantin.jpg', isIgImported: true,
+                name: 'Dekorasi Mobil Pengantin Bunga Putih & Pink',
+                description: 'Rangkaian mawar putih dan bunga pink untuk kap depan mobil pengantin, dilengkapi pita kain tile halus.'
+            },
+            {
+                id: 'p6', category: 'papan', price: null, image: IMG + 'bunga-papan-grand-opening.jpg', isIgImported: true,
+                name: 'Bunga Papan Congratulations / Grand Opening',
+                description: 'Karangan bunga papan ucapan selamat untuk grand opening dengan bunga segar di bagian atas dan bawah.'
+            }
+        ].map(p => (p.isIgImported ? { ...p, igLink: postUrl(p.image.split('/').pop().replace('.jpg','')) } : p));
+
+        /* 3. STATE & HELPER */
+        let cart = [];
+        let activeCategory = 'all';
+
+        const $  = (sel, root = document) => root.querySelector(sel);
+        const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+        const byId = id => document.getElementById(id);
+
+        const ICONS = {
+            'whatsapp': ['0 0 448 512', 'M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157m-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1s56.2 81.2 56.1 130.5c0 101.8-84.9 184.6-186.6 184.6m101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.3 18-17.6 21.8c-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7s-12.5-30.1-17.1-41.2c-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2s-9.7 1.4-14.8 6.9c-5.1 5.6-19.4 19-19.4 46.3s19.9 53.7 22.6 57.4c2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4s4.6-24.1 3.2-26.4c-1.3-2.5-5-3.9-10.5-6.6'],
+            'instagram': ['0 0 448 512', 'M224.3 141a115 115 0 1 0-.6 230 115 115 0 1 0 .6-230m-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1-.6-149.2m93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1-53.6 0m129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8M399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1'],
+            'tiktok': ['0 0 448 512', 'M448.5 209.9c-44 .1-87-13.6-122.8-39.2v178.7c0 33.1-10.1 65.4-29 92.6s-45.6 48-76.6 59.6-64.8 13.5-96.9 5.3-60.9-25.9-82.7-50.8-35.3-56-39-88.9 2.9-66.1 18.6-95.2 40-52.7 69.6-67.7 62.9-20.5 95.7-16v89.9c-15-4.7-31.1-4.6-46 .4s-27.9 14.6-37 27.3-14 28.1-13.9 43.9 5.2 31 14.5 43.7 22.4 22.1 37.4 26.9 31.1 4.8 46-.1 28-14.4 37.2-27.1 14.2-28.1 14.2-43.8V0h88c-.1 7.4.6 14.9 1.9 22.2 3.1 16.3 9.4 31.9 18.7 45.7s21.3 25.6 35.2 34.6c19.9 13.1 43.2 20.1 67 20.1V210z'],
+            'facebook-f': ['0 0 320 512', 'M80 299.3V512h116V299.3h86.5l18-97.8H196v-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4.4 37 1.2V7.9C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4v42.1H14v97.8z'],
+            'youtube': ['0 0 576 512', 'M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z'],
+            'clock': ['0 0 512 512', 'M256 0a256 256 0 1 1 0 512 256 256 0 1 1 0-512m-24 120v136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24'],
+            'xmark': ['0 0 384 512', 'M55.1 73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L147.2 256 9.9 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l137.3-137.4 137.4 137.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.8 256l137.3-137.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192.5 210.7z'],
+            'location-dot': ['0 0 384 512', 'M0 188.6C0 84.4 86 0 192 0s192 84.4 192 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0C120.1 450.9-.1 307.9-.1 188.6zM192 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128'],
+            'circle-play': ['0 0 512 512', 'M0 256a256 256 0 1 1 512 0 256 256 0 1 1-512 0m188.3-108.9c-7.6 4.2-12.3 12.3-12.3 20.9v176c0 8.7 4.7 16.7 12.3 20.9s16.8 4.1 24.3-.5l144-88c7.1-4.4 11.5-12.1 11.5-20.5s-4.4-16.1-11.5-20.5l-144-88c-7.4-4.5-16.7-4.7-24.3-.5z'],
+            'cart-plus': ['0 0 640 512', 'M0 8C0-5.3 10.7-16 24-16h45.3c27.1 0 50.3 19.4 55.1 46l.4 2h412.7c20 0 35.1 18.2 31.4 37.9l-31.1 165.9c-5.7 30.3-32.1 52.2-62.9 52.2H171.3l5.1 28.3c2.1 11.4 12 19.7 23.6 19.7h256c13.3 0 24 10.7 24 24s-10.7 24-24 24H200.1c-34.8 0-64.6-24.9-70.8-59.1L77.2 38.6c-.7-3.8-4-6.6-7.9-6.6H24C10.7 32 0 21.3 0 8m160 456a48 48 0 1 1 96 0 48 48 0 1 1-96 0m224 0a48 48 0 1 1 96 0 48 48 0 1 1-96 0M336 78.4c-13.3 0-24 10.7-24 24V136h-33.6c-13.3 0-24 10.7-24 24s10.7 24 24 24H312v33.6c0 13.3 10.7 24 24 24s24-10.7 24-24V184h33.6c13.3 0 24-10.7 24-24s-10.7-24-24-24H360v-33.6c0-13.3-10.7-24-24-24'],
+            'bag-shopping': ['0 0 448 512', 'M160 80c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160zm-48 48H48c-26.5 0-48 21.5-48 48v208c0 53 43 96 96 96h256c53 0 96-43 96-96V176c0-26.5-21.5-48-48-48h-64V80c0-61.9-50.1-112-112-112S112 18.1 112 80zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48m152 24a24 24 0 1 1 48 0 24 24 0 1 1-48 0'],
+            'video': ['0 0 576 512', 'M96 64c-35.3 0-64 28.7-64 64v256c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64zm368 272 73.5 58.8c4.2 3.4 9.4 5.2 14.8 5.2 13.1 0 23.7-10.6 23.7-23.7V135.7c0-13.1-10.6-23.7-23.7-23.7-5.4 0-10.6 1.8-14.8 5.2L464 176z'],
+            'store': ['0 0 512 512', 'M30.7 72.3C37.6 48.4 59.5 32 84.4 32h344c24.9 0 46.8 16.4 53.8 40.3l23.4 80.2c12.8 43.7-20.1 87.5-65.6 87.5-26.3 0-49.4-14.9-60.8-37.1-11.6 21.9-34.6 37.1-61.4 37.1-26.6 0-49.7-15-61.3-37-11.6 22-34.7 37-61.3 37-26.8 0-49.8-15.1-61.4-37.1C122.4 225 99.3 240 73 240c-45.6 0-78.4-43.7-65.6-87.5zM96.4 352h320v-66.4c7.6 1.6 15.5 2.4 23.5 2.4 14.3 0 28-2.6 40.5-7.2V432c0 26.5-21.5 48-48 48h-352c-26.5 0-48-21.5-48-48V280.8c12.5 4.6 26.1 7.2 40.5 7.2 8.1 0 15.9-.8 23.5-2.4z'],
+            'star': ['0 0 576 512', 'M309.5-18.9c-4.1-8-12.4-13.1-21.4-13.1s-17.3 5.1-21.4 13.1l-73.6 144.2-159.9 25.4c-8.9 1.4-16.3 7.7-19.1 16.3s-.5 18 5.8 24.4l114.4 114.5-25.2 159.9c-1.4 8.9 2.3 17.9 9.6 23.2s16.9 6.1 25 2l144.4-73.4L432.4 491c8 4.1 17.7 3.3 25-2s11-14.2 9.6-23.2l-25.3-159.9 114.4-114.5c6.4-6.4 8.6-15.8 5.8-24.4s-10.1-14.9-19.1-16.3L383 125.3z'],
+            'circle-plus': ['0 0 512 512', 'M256 512a256 256 0 1 0 0-512 256 256 0 1 0 0 512m-24-168v-64h-64c-13.3 0-24-10.7-24-24s10.7-24 24-24h64v-64c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24h-64v64c0 13.3-10.7 24-24 24s-24-10.7-24-24'],
+            'plus': ['0 0 448 512', 'M256 64c0-17.7-14.3-32-32-32s-32 14.3-32 32v160H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h160v160c0 17.7 14.3 32 32 32s32-14.3 32-32V288h160c17.7 0 32-14.3 32-32s-14.3-32-32-32H256z'],
+            'play': ['0 0 448 512', 'M91.2 36.9c-12.4-6.8-27.4-6.5-39.6.7S32 57.9 32 72v368c0 14.1 7.5 27.2 19.6 34.4s27.2 7.5 39.6.7l336-184c12.8-7 20.8-20.5 20.8-35.1s-8-28.1-20.8-35.1z'],
+            'map-location-dot': ['0 0 640 512', 'M576 48c0-11.1-5.7-21.4-15.2-27.2s-21.2-6.4-31.1-1.4L413.5 77.5 234.1 17.6c-8.1-2.7-16.8-2.1-24.4 1.7l-128 64C70.8 88.8 64 99.9 64 112v352c0 11.1 5.7 21.4 15.2 27.2s21.2 6.4 31.1 1.4l116.1-58.1 173.3 57.8c-4.3-6.4-8.5-13.1-12.6-19.9-11-18.3-21.9-39.3-30-61.8l-101.2-33.7V92.4l128 42.7v99.3c31-35.8 77-58.4 128-58.4 22.6 0 44.2 4.4 64 12.5zm-64 176c-66.3 0-120 52.8-120 117.9 0 68.9 64.1 150.4 98.6 189.3 11.6 13 31.3 13 42.9 0 34.5-38.9 98.6-120.4 98.6-189.3 0-65.1-53.7-117.9-120-117.9zm-40 120a40 40 0 1 1 80 0 40 40 0 1 1-80 0'],
+            'location-arrow': ['0 0 512 512', 'M477.9 75.5c4.5-11.8 1.7-25.2-7.2-34.1s-22.3-11.8-34.1-7.2l-416 160C7.9 199-.3 211.2 0 224.7s9.1 25.4 21.9 29.6l176.8 58.9L257.6 490c4.3 12.8 16.1 21.6 29.6 21.9s25.7-7.9 30.6-20.5l160-416z'],
+            'heart': ['0 0 512 512', 'm241 87.1 15 20.7 15-20.7C296 52.5 336.2 32 378.9 32 452.4 32 512 91.6 512 165.1v2.6c0 112.2-139.9 242.5-212.9 298.2-12.4 9.4-27.6 14.1-43.1 14.1s-30.8-4.6-43.1-14.1C139.9 410.2 0 279.9 0 167.7v-2.6C0 91.6 59.6 32 133.1 32 175.8 32 216 52.5 241 87.1'],
+            'fire': ['0 0 448 512', 'M160.5-26.4c9.3-7.8 23-7.5 31.9.9 12.3 11.6 23.3 24.4 33.9 37.4 13.5 16.5 29.7 38.3 45.3 64.2 5.2-6.8 10-12.8 14.2-17.9 1.1-1.3 2.2-2.7 3.3-4.1C297 44.3 306.8 32 319.9 32c13.4 0 22.8 11.9 30.8 22.1q1.95 2.55 3.9 4.8c10.3 12.4 24 30.3 37.7 52.4 27.2 43.9 55.6 106.4 55.6 176.6 0 123.7-100.3 224-224 224S0 411.7 0 288c0-91.1 41.1-170 80.5-225 19.9-27.7 39.7-49.9 54.6-65.1 8.2-8.4 16.5-16.7 25.5-24.2zM225.7 416c25.3 0 47.7-7 68.8-21 42.1-29.4 53.4-88.2 28.1-134.4-4.5-9-16-9.6-22.5-2l-25.2 29.3c-6.6 7.6-18.5 7.4-24.7-.5-17.3-22.1-49.1-62.4-65.3-83-5.4-6.9-15.2-8-21.5-1.9-18.3 17.8-51.5 56.8-51.5 104.3 0 68.6 50.6 109.2 113.7 109.2z'],
+            'expand': ['0 0 448 512', 'M32 32C14.3 32 0 46.3 0 64v96c0 17.7 14.3 32 32 32s32-14.3 32-32V96h64c17.7 0 32-14.3 32-32s-14.3-32-32-32zm32 320c0-17.7-14.3-32-32-32S0 334.3 0 352v96c0 17.7 14.3 32 32 32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H64zM320 32c-17.7 0-32 14.3-32 32s14.3 32 32 32h64v64c0 17.7 14.3 32 32 32s32-14.3 32-32V64c0-17.7-14.3-32-32-32zm128 320c0-17.7-14.3-32-32-32s-32 14.3-32 32v64h-64c-17.7 0-32 14.3-32 32s14.3 32 32 32h96c17.7 0 32-14.3 32-32z'],
+            'cloud-arrow-down': ['0 0 576 512', 'M144 480C64.5 480 0 415.5 0 336c0-63.4 41-117.2 97.9-136.5C96.6 191.8 96 184 96 176c0-79.5 64.5-144 144-144 55.4 0 103.5 31.3 127.6 77.1C381.8 100.8 398.4 96 416 96c53 0 96 43 96 96 0 15.7-3.8 30.6-10.5 43.7C545.5 256 576 300.4 576 352c0 70.7-57.3 128-128 128zm233-167c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-31 31V208c0-13.3-10.7-24-24-24s-24 10.7-24 24v102.1l-31-31c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l72 72c9.4 9.4 24.6 9.4 33.9 0l72-72z'],
+            'circle-check': ['0 0 512 512', 'M256 512a256 256 0 1 1 0-512 256 256 0 1 1 0 512m118-366.3c-10.7-7.8-25.7-5.4-33.5 5.3L221.1 315.2 169 263.1c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l72 72c5 5 11.8 7.5 18.8 7s13.4-4.1 17.5-9.8l135.9-187c7.8-10.7 5.4-25.7-5.3-33.5'],
+            'circle': ['0 0 512 512', 'M0 256a256 256 0 1 1 512 0 256 256 0 1 1-512 0'],
+            'bolt': ['0 0 448 512', 'M338.8-9.9c11.9 8.6 16.3 24.2 10.9 37.8L271.3 224H416c13.5 0 25.5 8.4 30.1 21.1s.7 26.9-9.6 35.5l-288 240c-11.3 9.4-27.4 9.9-39.3 1.3s-16.3-24.2-10.9-37.8L176.7 288H32c-13.5 0-25.5-8.4-30.1-21.1s-.7-26.9 9.6-35.5l288-240c11.3-9.4 27.4-9.9 39.3-1.3'],
+            'basket-shopping': ['0 0 576 512', 'M288 0c6.6 0 12.9 2.7 17.4 7.5l144 152 .5.5H528c17.7 0 32 14.3 32 32 0 14.5-9.6 26.7-22.8 30.7l-46.1 207.2c-6.5 29.3-32.5 50.1-62.5 50.1H147.3c-30 0-56-20.8-62.5-50.1l-46-207.2C25.6 218.8 16 206.5 16 192c0-17.7 14.3-32 32-32h78.1l.5-.5 144-152C275.1 2.7 281.4 0 288 0m0 58.9L192.2 160h191.6zM208 264c0-13.3-10.7-24-24-24s-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24zm80-24c-13.3 0-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24V264c0-13.3-10.7-24-24-24m128 24c0-13.3-10.7-24-24-24s-24 10.7-24 24v112c0 13.3 10.7 24 24 24s24-10.7 24-24z'],
+            'bars': ['0 0 448 512', 'M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32m0 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32m448 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32'],
+            'arrow-up-right-from-square': ['0 0 512 512', 'M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.3 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32zM80 96c-44.2 0-80 35.8-80 80v256c0 44.2 35.8 80 80 80h256c44.2 0 80-35.8 80-80v-80c0-17.7-14.3-32-32-32s-32 14.3-32 32v80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V176c0-8.8 7.2-16 16-16h80c17.7 0 32-14.3 32-32s-14.3-32-32-32z'],
+            'spa': ['0 0 576 512', 'M169.7 227.5c34.3 18.7 64.5 44.1 88.8 74.5 11.1 13.9 21 28.9 29.4 44.8 8.5-15.9 18.3-30.8 29.4-44.8 24.3-30.5 54.5-55.9 88.8-74.5 41.7-22.7 89.4-35.5 139.7-35.5h9.9c11.1 0 20.1 9 20.1 20.1 0 148-119.9 267.9-267.9 267.9h-40.2C119.9 480 0 360.1 0 212.1 0 201 9 192 20.1 192H30c50.4 0 98.1 12.8 139.7 35.5M303.9 38c16.9 15.9 61.4 63.4 89 142.3A340 340 0 0 0 288 262.4c-29.2-33.9-64.8-61.8-104.9-82.1 27.6-78.9 72.2-126.4 89-142.3 4.3-4.1 10-6 15.9-6s11.6 2 15.9 6'],
+            'square-poll-vertical': ['0 0 448 512', 'M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64zm56 192c13.3 0 24 10.7 24 24v112c0 13.3-10.7 24-24 24s-24-10.7-24-24V248c0-13.3 10.7-24 24-24m184 88c0-13.3 10.7-24 24-24s24 10.7 24 24v48c0 13.3-10.7 24-24 24s-24-10.7-24-24zm-80-184c13.3 0 24 10.7 24 24v208c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24'],
+            'car-side': ['0 0 640 512', 'M147 106.7 117.2 192h122.9V96h-77.9c-6.8 0-12.9 4.3-15.1 10.7zm-98.4 87.2L86.5 85.6C97.8 53.5 128.1 32 162.1 32H360c25.2 0 48.9 11.9 64 32l96.2 128.3C587.1 196.5 640 252.1 640 320v16c0 35.3-28.7 64-64 64h-16.4c-4 44.9-41.7 80-87.6 80s-83.6-35.1-87.6-80H239.7c-4 44.9-41.7 80-87.6 80s-83.6-35.1-87.6-80h-.4c-35.3 0-64-28.7-64-64v-80c0-30.1 20.7-55.3 48.6-62.1zM440 192l-67.2-89.6c-3-4-7.8-6.4-12.8-6.4h-72v96zM152 432a40 40 0 1 0 0-80 40 40 0 1 0 0 80m360-40a40 40 0 1 0-80 0 40 40 0 1 0 80 0'],
+            'box-tissue': ['0 0 512 512', 'M103.9 32h161c13.8 0 26 8.8 30.4 21.9l17.4 52.2c4.4 13.1 16.6 21.9 30.4 21.9h60.5c21.8 0 37.3 21.4 30.4 42.1L384 320H128L72.7 70.9C68.2 51 83.4 32 103.9 32M48 256h16.6l16.5 74.4c4.9 22 24.4 37.6 46.9 37.6h256c20.7 0 39-13.2 45.5-32.8l26.4-79.2h8.1c26.5 0 48 21.5 48 48v128c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V304c0-26.5 21.5-48 48-48']
+        };
+        const ICON_ALIASES = { 'plus-circle': 'circle-plus' };
+
+        function hydrateIcons(root = document) {
+            root.querySelectorAll('i[class*="fa-"]').forEach(el => {
+                const names = [...el.classList].filter(c => c.startsWith('fa-')).map(c => c.slice(3));
+                const key = names.map(n => ICON_ALIASES[n] || n).find(n => ICONS[n]);
+                if (!key) return;
+                const [viewBox, d] = ICONS[key];
+                const extra = [...el.classList].filter(c => !c.startsWith('fa-')).join(' ');
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('viewBox', viewBox);
+                svg.setAttribute('fill', 'currentColor');
+                svg.setAttribute('width', '1em');
+                svg.setAttribute('height', '1em');
+                svg.setAttribute('aria-hidden', 'true');
+                svg.setAttribute('class', extra);
+                svg.style.cssText = 'display:inline-block;vertical-align:-0.125em;flex-shrink:0';
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', d);
+                svg.appendChild(path);
+                el.replaceWith(svg);
+            });
+        }
+        hydrateIcons();
+        new MutationObserver(() => hydrateIcons()).observe(document.body, { childList: true, subtree: true });
+
+        const formatRupiah = n => n ? 'Rp ' + Number(n).toLocaleString('id-ID') : 'Chat Admin';
+        const priceNote = n => n ? ` (${formatRupiah(n)})` : '';
+
+        const esc = value => String(value).replace(/[&<>"']/g, c => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+        ));
+
+        const categoryLabel = key => (CATEGORIES.find(c => c.key === key) || {}).label || key;
+
+        const waUrl = text => `https://wa.me/${CONFIG.waNumber}` + (text ? `?text=${encodeURIComponent(text)}` : '');
+        const openWhatsApp = text => window.open(waUrl(text), '_blank', 'noopener');
+
+        const formatDateTime = value => {
+            if (!value) return 'Segera (24 Jam)';
+            const d = new Date(value);
+            return isNaN(d) ? value : d.toLocaleString('id-ID', { dateStyle: 'full', timeStyle: 'short' });
+        };
+
+        const setVisible = (el, show, displayClass = 'flex') => {
+            el.classList.toggle('hidden', !show);
+            el.classList.toggle(displayClass, show);
+        };
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast glass-card text-brand-900 border border-brand-300 px-4 py-3 rounded-2xl shadow-lg text-xs font-semibold flex items-center gap-2';
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-sm"></i><span>${esc(message)}</span>`;
+            byId('toastContainer').appendChild(toast);
+            setTimeout(() => toast.remove(), 3500);
+        }
+
+        /* 4. RENDER FUNCTIONS */
+        function renderReels() {
+            byId('reelsGrid').innerHTML = REELS.map(r => {
+                const t = REEL_THEMES[r.theme];
+                return `
+                <div class="flex flex-col h-full bg-black/60 rounded-3xl overflow-hidden border-2 ${t.border} shadow-2xl backdrop-blur-md transition duration-300">
+                    <div class="p-3.5 bg-black/80 border-b border-white/10 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-full ${t.avatar} text-white flex items-center justify-center font-serif font-bold text-xs shadow">vd</div>
+                            <span class="text-xs font-bold text-white">@vdlabellaflorist</span>
+                        </div>
+                        <span class="${t.badge} text-[9px] font-black px-2 py-0.5 rounded uppercase">${esc(r.badge)}</span>
+                    </div>
+
+                    <!-- Video Player dengan atribut autoplay, loop, muted, dan playsinline Wajib -->
+                    <div class="relative aspect-[9/16] w-full bg-slate-900 overflow-hidden">
+                        <video id="${r.id}" class="reel-video w-full h-full object-cover"
+                               autoplay loop muted playsinline preload="auto" poster="${r.poster}">
+                            <source src="${r.src}" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+                        <button type="button" data-action="reel-toggle" data-video="${r.id}"
+                                aria-label="Putar atau jeda video ${esc(r.title)}"
+                                class="absolute inset-0 w-full h-full z-10 cursor-pointer"></button>
+                    </div>
+
+                    <div class="p-4 bg-brand-900/90 flex-grow flex flex-col justify-between space-y-3">
+                        <div>
+                            <h3 class="font-serif font-bold text-lg text-white">${esc(r.title)}</h3>
+                            <p class="text-xs text-brand-200 mt-1">${esc(r.desc)}</p>
+                            <p class="text-sm font-extrabold text-amber-400 mt-2">${formatRupiah(r.price)}</p>
+                        </div>
+                        <button type="button" data-action="reel-order" data-id="${r.id}"
+                                class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-1.5 shadow">
+                            <i class="fa-brands fa-whatsapp text-base"></i> ${esc(r.cta)}
+                        </button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderServices() {
+            byId('servicesGrid').innerHTML = SERVICES.map(s => `
+                <div class="bg-cream/60 p-6 rounded-3xl border border-brand-200 shadow-sm hover:shadow-md transition space-y-3 ${s.card}">
+                    <div class="w-12 h-12 rounded-2xl ${s.iconBg} text-white flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid ${s.icon}"></i>
+                    </div>
+                    <h3 class="font-serif text-lg font-bold text-brand-900">${esc(s.title)}</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">${esc(s.desc)}</p>
+                    <a href="#custom-bunga" data-action="set-service" data-service="${esc(s.service)}"
+                       class="inline-flex items-center gap-1.5 text-xs font-bold ${s.link} pt-1">
+                        <span>${esc(s.cta)}</span> &rarr;
+                    </a>
+                </div>`).join('');
+        }
+
+        function renderCustomServiceOptions() {
+            byId('custServiceType').innerHTML = CUSTOM_SERVICE_OPTIONS
+                .map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('');
+        }
+
+        function renderCategoryTabs() {
+            const base = 'filter-tab px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition';
+            const active = 'bg-brand-600 text-white';
+            const idle = 'bg-white text-gray-700 border border-brand-200 hover:bg-brand-100';
+            byId('categoryFilters').innerHTML = CATEGORIES.map(c => `
+                <button type="button" data-action="filter" data-category="${c.key}"
+                        class="${base} ${c.key === activeCategory ? active : idle}">${esc(c.label)}</button>`).join('');
+        }
+
+        function renderProducts() {
+            const list = activeCategory === 'all' ? products : products.filter(p => p.category === activeCategory);
+
+            byId('productsGrid').innerHTML = list.map(p => {
+                const badge = p.id === 'p0'
+                    ? `<span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow">
+                           <i class="fa-solid fa-star text-amber-300"></i> Jumbo Highlight</span>`
+                    : p.isIgImported
+                        ? `<a href="${esc(p.igLink || CONFIG.igUrl)}" target="_blank" rel="noopener noreferrer"
+                              class="absolute top-3 left-3 ig-gradient-bg text-white text-[10px] font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                               <i class="fa-brands fa-instagram"></i> IG Post</a>`
+                        : '';
+
+                return `
+                <div class="bg-white rounded-3xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-56 overflow-hidden bg-brand-50">
+                            <img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            ${badge}
+                            <button type="button" data-action="open-product" data-id="${esc(p.id)}" aria-label="Lihat detail"
+                                    class="absolute bottom-3 right-3 bg-white/90 hover:bg-white text-brand-900 p-2 rounded-full shadow-md transition">
+                                <i class="fa-solid fa-expand text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="p-5 space-y-2">
+                            <h3 data-action="open-product" data-id="${esc(p.id)}" class="font-serif font-bold text-base text-brand-900 group-hover:text-brand-600 transition cursor-pointer">${esc(p.name)}</h3>
+                            <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">${esc(p.description)}</p>
+                            <p class="text-base font-bold text-brand-600 pt-1">${formatRupiah(p.price)}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 pb-5 pt-0 flex gap-2">
+                        ${p.price ? `<button type="button" data-action="add-cart" data-id="${esc(p.id)}"
+                                class="flex-1 bg-brand-100 hover:bg-brand-600 text-brand-900 hover:text-white py-2.5 rounded-xl font-bold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-cart-plus"></i><span>+ Keranjang</span>
+                        </button>` : ''}
+                        <button type="button" data-action="quick-wa" data-id="${esc(p.id)}" title="Pesan WA"
+                                class="${p.price ? 'px-3' : 'flex-1 gap-1.5'} bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl font-bold text-xs transition flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>${p.price ? '' : '<span>Chat Admin</span>'}
+                        </button>
+                    </div>
+                </div>`;
+            }).join('') || `<p class="col-span-full text-center text-sm text-gray-500 py-10">Belum ada produk di kategori ini.</p>`;
+        }
+
+        function renderInstagramFeed() {
+            byId('igFeedGrid').innerHTML = instagramFeedData.map(post => `
+                <div class="bg-white rounded-3xl overflow-hidden border border-brand-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <div class="p-3.5 flex items-center justify-between border-b border-gray-100">
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-full p-[1.5px] ig-gradient-bg">
+                                    <div class="w-full h-full bg-white rounded-full p-[1px]">
+                                        <div class="w-full h-full rounded-full bg-brand-600 text-white flex items-center justify-center font-serif text-[10px] font-bold">vd</div>
+                                    </div>
+                                </div>
+                                <span class="text-xs font-bold text-gray-800">@vdlabellaflorist</span>
+                            </div>
+                            <a href="${esc(post.igUrl)}" target="_blank" rel="noopener noreferrer" class="text-pink-600 hover:text-pink-700 text-xs" aria-label="Buka di Instagram">
+                                <i class="fa-brands fa-instagram text-base"></i>
+                            </a>
+                        </div>
+
+                        <div class="relative h-64 overflow-hidden bg-brand-50">
+                            <img src="${esc(post.image)}" alt="${esc(post.title)}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+
+                        <div class="p-4 space-y-2">
+                            <h4 class="font-serif font-bold text-sm text-brand-900">${esc(post.title)}</h4>
+                            <p class="text-xs text-gray-600 line-clamp-2 leading-relaxed">${esc(post.caption)}</p>
+                            <p class="text-xs font-bold text-brand-600 pt-1">${formatRupiah(post.price)}</p>
+                        </div>
+                    </div>
+
+                    <div class="p-4 pt-0 flex items-center gap-2">
+                        <button type="button" data-action="import-ig" data-id="${post.id}"
+                                class="flex-1 bg-pink-50 hover:bg-pink-100 text-pink-700 border border-pink-200 py-2 rounded-xl font-bold text-xs transition flex items-center justify-center gap-1.5">
+                            <i class="fa-solid fa-plus text-xs"></i> Impor ke Katalog
+                        </button>
+                        <button type="button" data-action="quick-wa-ig" data-id="${post.id}" title="Pesan WA"
+                                class="bg-emerald-600 hover:bg-emerald-700 text-white p-2 px-3 rounded-xl font-bold text-xs transition flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </button>
+                    </div>
+                </div>`).join('');
+        }
+
+        function renderSocials() {
+            const list = [
+                { label: 'WhatsApp',  icon: 'fa-brands fa-whatsapp',  bg: 'bg-emerald-500',  href: waUrl('Halo vdlabellaflorist, saya ingin pesan bunga') },
+                { label: 'Instagram', icon: 'fa-brands fa-instagram', bg: 'ig-gradient-bg',  href: CONFIG.igUrl },
+                { label: 'TikTok',    icon: 'fa-brands fa-tiktok',    bg: 'bg-black',        href: CONFIG.social.tiktok },
+                { label: 'Facebook',  icon: 'fa-brands fa-facebook-f', bg: 'bg-blue-600',    href: CONFIG.social.facebook },
+                { label: 'YouTube',   icon: 'fa-brands fa-youtube',   bg: 'bg-red-600',      href: CONFIG.social.youtube },
+                { label: 'Google Maps', icon: 'fa-solid fa-location-dot', bg: 'bg-sky-600',  href: CONFIG.mapsUrl }
+            ].filter(s => s.href);
+
+            $$('[data-socials]').forEach(box => {
+                const pill = box.dataset.variant === 'pill';
+                box.innerHTML = list.map(s => `
+                    <a href="${esc(s.href)}" target="_blank" rel="noopener noreferrer" title="${esc(s.label)}" aria-label="${esc(s.label)}"
+                       class="${s.bg} text-white inline-flex items-center justify-center gap-2 shadow-sm hover:scale-110 hover:shadow-md transition
+                              ${pill ? 'px-3.5 h-10 rounded-full text-xs font-bold' : 'w-9 h-9 rounded-full text-base'}">
+                        <i class="${s.icon} ${pill ? 'text-base' : ''}"></i>${pill ? `<span>${esc(s.label)}</span>` : ''}
+                    </a>`).join('');
+            });
+        }
+
+        function renderProductModal(product) {
+            byId('productModalContent').innerHTML = `
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                    <img src="${esc(product.image)}" alt="${esc(product.name)}" class="rounded-2xl w-full h-72 object-cover">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="text-[10px] font-bold uppercase bg-brand-100 text-brand-800 px-2.5 py-1 rounded-full">${esc(categoryLabel(product.category))}</span>
+                            ${product.isIgImported ? `<span class="text-[10px] font-bold ig-gradient-bg text-white px-2.5 py-1 rounded-full"><i class="fa-brands fa-instagram"></i> IG Post</span>` : ''}
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-900">${esc(product.name)}</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">${esc(product.description)}</p>
+                        <p class="text-xl font-bold text-brand-600">${formatRupiah(product.price)}</p>
+
+                        <div class="pt-2 flex flex-col gap-2">
+                            ${product.price ? `<button type="button" data-action="add-cart" data-id="${esc(product.id)}" data-close-modal
+                                    class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3 rounded-xl font-bold text-xs transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-cart-plus"></i> Tambah ke Keranjang
+                            </button>` : ''}
+                            <button type="button" data-action="quick-wa" data-id="${esc(product.id)}"
+                                    class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-bold text-xs transition flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-base"></i> ${product.price ? 'Tanya / Pesan via WA (24 Jam)' : 'Chat Admin untuk Harga & Pemesanan'}
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function renderCart() {
+            const badge = byId('cartCountBadge');
+            const container = byId('cartItemsContainer');
+            const totalEl = byId('cartTotal');
+            const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+
+            badge.textContent = count;
+            setVisible(badge, count > 0);
+
+            if (!cart.length) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl"></i>
+                        <p class="text-xs font-medium">Keranjang belanja Anda masih kosong.</p>
+                    </div>`;
+                totalEl.textContent = formatRupiah(0);
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div class="flex items-center gap-3 p-3 bg-cream/60 rounded-2xl border border-brand-200">
+                    <img src="${esc(item.image)}" alt="${esc(item.name)}" class="w-14 h-14 rounded-xl object-cover">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="text-xs font-bold text-brand-900 truncate">${esc(item.name)}</h4>
+                        <p class="text-xs font-semibold text-brand-600">${formatRupiah(item.price)}</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-2 py-1 rounded-lg border border-brand-200">
+                        <button type="button" data-action="qty" data-id="${esc(item.id)}" data-delta="-1" aria-label="Kurangi" class="text-xs text-gray-500 hover:text-brand-600 px-1 font-bold">-</button>
+                        <span class="text-xs font-bold text-brand-900">${item.quantity}</span>
+                        <button type="button" data-action="qty" data-id="${esc(item.id)}" data-delta="1" aria-label="Tambah" class="text-xs text-gray-500 hover:text-brand-600 px-1 font-bold">+</button>
+                    </div>
+                </div>`).join('');
+
+            totalEl.textContent = formatRupiah(cart.reduce((sum, i) => sum + i.price * i.quantity, 0));
+        }
+
+        /* 5. ACTIONS */
+        const findProduct = id => products.find(p => p.id === id);
+
+        function toggleReel(videoId) {
+            const video = byId(videoId);
+            if (!video) return;
+            if (video.paused) {
+                video.dataset.userPaused = '';
+                video.play().catch(() => {});
+            } else {
+                video.dataset.userPaused = '1';
+                video.pause();
+            }
+        }
+
+        function setupVideoAutoplay() {
+            const videos = $$('.reel-video');
+            if (!('IntersectionObserver' in window)) {
+                videos.forEach(v => v.play().catch(() => {}));
+                return;
+            }
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(({ target: v, isIntersecting }) => {
+                    if (isIntersecting) {
+                        if (!v.dataset.userPaused) v.play().catch(() => {});
+                    } else {
+                        v.pause();
+                    }
+                });
+            }, { threshold: 0.5 });
+            videos.forEach(v => observer.observe(v));
+        }
+
+        function setCategory(category) {
+            activeCategory = category;
+            renderCategoryTabs();
+            renderProducts();
+        }
+
+        function addCustomProduct(product) {
+            products.unshift(product);
+            setCategory('all');
+        }
+
+        function importIgPost(igId) {
+            const item = instagramFeedData.find(i => i.id === igId);
+            if (!item) return;
+            if (products.some(p => p.name === item.title)) {
+                showToast('Item IG ini sudah ada di katalog!');
+                return;
+            }
+            addCustomProduct({
+                id: 'ig-imp-' + Date.now(),
+                name: item.title, category: item.category, price: item.price,
+                image: item.image, description: item.caption,
+                isIgImported: true, igLink: item.igUrl
+            });
+            showToast(`"${item.title}" berhasil diimpor ke katalog!`);
+        }
+
+        function importManualPost() {
+            const title = byId('igPostTitle').value.trim() || 'Post Bunga IG @vdlabellaflorist';
+            const price = parseInt(byId('igPostPrice').value, 10) || 500000;
+            const url   = byId('igPostUrl').value.trim() || 'https://www.instagram.com/vdlabellaflorist';
+
+            addCustomProduct({
+                id: 'ig-manual-' + Date.now(),
+                name: title, category: 'mawar', price,
+                image: IMG + 'buket-mawar-merah-jumbo.jpg',
+                description: `Rangkaian diposting di Instagram @vdlabellaflorist. Link: ${url}`,
+                isIgImported: true, igLink: url
+            });
+            showToast('Postingan Instagram berhasil diimpor!');
+            ['igPostTitle', 'igPostPrice', 'igPostUrl'].forEach(id => { byId(id).value = ''; });
+        }
+
+        function openProductModal(id) {
+            const product = findProduct(id);
+            if (!product) return;
+            renderProductModal(product);
+            setVisible(byId('productModal'), true);
+        }
+        const closeProductModal = () => setVisible(byId('productModal'), false);
+
+        function toggleCart(force) {
+            const modal = byId('cartModal');
+            const show = typeof force === 'boolean' ? force : modal.classList.contains('hidden');
+            setVisible(modal, show);
+        }
+
+        function addToCart(id) {
+            const product = findProduct(id);
+            if (!product) return;
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.quantity += 1;
+            else cart.push({ ...product, quantity: 1 });
+            renderCart();
+            showToast(`"${product.name}" ditambahkan ke keranjang!`);
+        }
+
+        function changeQuantity(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.quantity += delta;
+            if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
+            renderCart();
+        }
+
+        function checkoutWhatsApp() {
+            if (!cart.length) {
+                showToast('Keranjang Anda masih kosong!');
+                return;
+            }
+            const name    = byId('custName').value.trim() || 'Pelanggan';
+            const date    = formatDateTime(byId('custDate').value);
+            const address = byId('custAddress').value.trim() || 'Konfirmasi via Chat';
+            const note    = byId('custCardNote').value.trim() || 'Tidak ada pesan khusus';
+
+            let grandTotal = 0;
+            const itemsText = cart.map((item, i) => {
+                const subtotal = item.price * item.quantity;
+                grandTotal += subtotal;
+                return `${i + 1}. ${item.name} (${item.quantity}x) - ${formatRupiah(subtotal)}`;
+            }).join('\n');
+
+            openWhatsApp(
+                `Halo vdlabellaflorist, saya ingin memesan karangan bunga berikut:\n\n` +
+                `*RINCIAN PESANAN KERANJANG:*\n${itemsText}\n\n` +
+                `*Total Pembayaran:* ${formatRupiah(grandTotal)}\n\n` +
+                `*DATA PEMESAN & TUJUAN:*\n` +
+                `• Nama: ${name}\n` +
+                `• Tanggal & Jam Pengiriman: ${date}\n` +
+                `• Alamat Lengkap: ${address}\n` +
+                `• Pesan Kartu Ucapan: "${note}"\n\n` +
+                `Mohon diproses. Terima kasih!`
+            );
+        }
+
+        function sendCustomOrder() {
+            const val = id => byId(id).value.trim();
+            openWhatsApp(
+                `Halo vdlabellaflorist, saya ingin berkonsultasi & memesan bunga kustom:\n\n` +
+                `*RINCIAN PESANAN KUSTOM:*\n` +
+                `• Jenis Rangkaian: ${byId('custServiceType').value}\n` +
+                `• Tema Warna / Bunga: ${val('custColorTheme') || 'Sesuai rekomendasi vdlabellaflorist'}\n` +
+                `• Estimasi Budget: ${byId('custBudget').value}\n` +
+                `• Tanggal & Jam Kirim: ${formatDateTime(byId('custDeliveryTime').value)}\n\n` +
+                `*DATA PEMESAN & TUJUAN:*\n` +
+                `• Nama Pemesan: ${val('custSenderName') || 'Pelanggan'}\n` +
+                `• Alamat Pengiriman: ${val('custDeliveryAddress') || 'Konfirmasi via Chat'}\n` +
+                `• Tulisan Ucapan: "${val('custCardText') || 'Tidak ada ucapan khusus'}"\n\n` +
+                `Mohon diproses dan diinfokan total harganya. Terima kasih!`
+            );
+        }
+
+        /* 6. EVENT BINDING & INIT */
+        const actions = {
+            'toggle-menu':   () => byId('mobileMenu').classList.toggle('hidden'),
+            'toggle-cart':   () => toggleCart(),
+            'toggle-import': () => byId('importPanel').classList.toggle('hidden'),
+            'close-product': () => closeProductModal(),
+            'filter':        el => setCategory(el.dataset.category),
+            'open-product':  el => openProductModal(el.dataset.id),
+            'add-cart':      el => addToCart(el.dataset.id),
+            'qty':           el => changeQuantity(el.dataset.id, Number(el.dataset.delta)),
+            'checkout':      () => checkoutWhatsApp(),
+            'send-custom':   () => sendCustomOrder(),
+            'import-ig':     el => importIgPost(el.dataset.id),
+            'import-manual': () => importManualPost(),
+            'reel-toggle':   el => toggleReel(el.dataset.video),
+            'set-service':   el => { byId('custServiceType').value = el.dataset.service; },
+
+            'reel-order': el => {
+                const reel = REELS.find(r => r.id === el.dataset.id);
+                if (reel) openWhatsApp(`Halo vdlabellaflorist, saya ingin memesan *${reel.title}* (${formatRupiah(reel.price)}) seperti di Video Showcase Reel. Mohon info ketersediaan & jadwal kirimnya.`);
+            },
+            'quick-wa': el => {
+                const p = findProduct(el.dataset.id);
+                if (p) openWhatsApp(`Halo vdlabellaflorist, saya berminat memesan "${p.name}"${priceNote(p.price)}. Mohon konfirmasi stok dan waktu pengiriman.`);
+            },
+            'quick-wa-ig': el => {
+                const post = instagramFeedData.find(i => i.id === el.dataset.id);
+                if (post) openWhatsApp(`Halo vdlabellaflorist, saya berminat memesan bunga dari Instagram @vdlabellaflorist: "${post.title}"${priceNote(post.price)}.`);
+            }
+        };
+
+        function bindEvents() {
+            document.addEventListener('click', e => {
+                if (e.target === byId('productModal')) return closeProductModal();
+                if (e.target === byId('cartModal'))    return toggleCart(false);
+
+                if (e.target.closest('#mobileMenu a')) byId('mobileMenu').classList.add('hidden');
+
+                const el = e.target.closest('[data-action]');
+                if (!el) return;
+                actions[el.dataset.action]?.(el);
+                if (el.hasAttribute('data-close-modal')) closeProductModal();
+            });
+
+            document.addEventListener('keydown', e => {
+                if (e.key !== 'Escape') return;
+                closeProductModal();
+                toggleCart(false);
+            });
+        }
+
+        function applyConfigLinks() {
+            $$('[data-wa]').forEach(a => { a.href = waUrl(a.dataset.wa); });
+            $$('[data-ig]').forEach(a => { a.href = CONFIG.igUrl; });
+            $$('[data-maps]').forEach(a => { a.href = CONFIG.mapsUrl; });
+            renderSocials();
+            byId('heroImage').src = IMG + 'buket-mawar-merah-jumbo.jpg';
+            byId('mapBg').style.backgroundImage = `url('${MAP_BG}')`;
+        }
+
+        function init() {
+            renderReels();
+            renderServices();
+            renderCustomServiceOptions();
+            renderCategoryTabs();
+            renderProducts();
+            renderInstagramFeed();
+            renderCart();
+            applyConfigLinks();
+            bindEvents();
+            setupVideoAutoplay();
+        }
+
+        init();
+    })();
+    </script>
+</body>
+</html>

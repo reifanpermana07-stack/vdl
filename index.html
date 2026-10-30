@@ -45,7 +45,6 @@
             backdrop-filter: blur(14px);
             border: 1px solid rgba(229, 208, 203, 0.6);
         }
-        @keyframes ios-blink { 50% { opacity: .4; } }
         /* iOS Safari: backdrop-filter pada header sticky memunculkan kotak hitam, pakai latar solid */
         @supports (-webkit-touch-callout: none) {
             .glass-card {
@@ -53,8 +52,9 @@
                 -webkit-backdrop-filter: none;
                 backdrop-filter: none;
             }
-            #header { -webkit-transform: translateZ(0); transform: translateZ(0); }
-            .animate-ping { animation: ios-blink 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+            /* Hindari lapisan GPU yang memicu kotak hitam di Safari iOS */
+            #header { -webkit-transform: none; transform: none; transition: none; will-change: auto; }
+            .animate-ping { animation: none; }
         }
         .ig-gradient-bg {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);

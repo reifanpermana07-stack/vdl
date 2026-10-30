@@ -2,7 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>vdlabellaflorist - Florist 24 Jam</title>
 
     <!-- Tailwind CSS -->
@@ -34,7 +34,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF6F0; color: #332725; }
+        html, body { max-width: 100%; overflow-x: hidden; }
+        @supports (overflow: clip) { html, body { overflow-x: clip; } }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF6F0; color: #332725; -webkit-text-size-adjust: 100%; }
+        .safe-x { padding-left: max(1rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
         h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
 
         .glass-card {
@@ -63,21 +66,21 @@
 <body class="bg-cream text-gray-800 flex flex-col min-h-screen">
 
     <!-- Announcement Bar -->
-    <div class="bg-brand-900 text-brand-100 text-[11px] sm:text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2 tracking-wide">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span><span class="font-bold text-amber-300">BUKA 24 JAM NONSTOP</span> — Siap Melayani Pemesanan & Pengiriman Bunga Setiap Hari ke Seluruh Area!</span>
+    <div class="bg-brand-900 text-brand-100 text-[11px] sm:text-xs py-2 safe-x font-medium flex items-center justify-center gap-2 tracking-wide" style="padding-top: max(0.5rem, env(safe-area-inset-top));">
+        <span class="inline-block shrink-0 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        <span class="min-w-0 text-center"><span class="font-bold text-amber-300">BUKA 24 JAM NONSTOP</span> — Siap Melayani Pemesanan & Pengiriman Bunga Setiap Hari ke Seluruh Area!</span>
     </div>
 
     <!-- Header & Navigation -->
     <header class="sticky top-0 z-40 glass-card shadow-sm transition-all duration-300" id="header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto safe-x sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
 
             <!-- Logo -->
-            <a href="#hero" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:bg-brand-700 transition">vd</div>
-                <div>
-                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-brand-900 block leading-none">vdlabellaflorist</span>
-                    <span class="text-[10px] tracking-widest uppercase text-emerald-700 font-extrabold flex items-center gap-1 mt-0.5">
+            <a href="#hero" class="flex items-center gap-2 sm:gap-3 group min-w-0">
+                <div class="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-serif text-xl font-bold shadow-md group-hover:bg-brand-700 transition">vd</div>
+                <div class="min-w-0">
+                    <span class="font-serif text-lg sm:text-2xl font-bold tracking-tight text-brand-900 block leading-none truncate">vdlabellaflorist</span>
+                    <span class="text-[9px] sm:text-[10px] tracking-wider sm:tracking-widest whitespace-nowrap uppercase text-emerald-700 font-extrabold flex items-center gap-1 mt-0.5">
                         <i class="fa-solid fa-clock text-[9px]"></i> Buka Setiap Hari (24 Jam)
                     </span>
                 </div>
@@ -98,7 +101,7 @@
             </nav>
 
             <!-- Action Buttons -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-1 sm:gap-3 shrink-0">
                 <a data-ig target="_blank" rel="noopener noreferrer"
                    class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full ig-gradient-bg text-white text-xs font-bold shadow-sm hover:opacity-90 transition">
                     <i class="fa-brands fa-instagram text-sm"></i><span>@vdlabellaflorist</span>

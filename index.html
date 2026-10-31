@@ -823,6 +823,16 @@
                 id: 'p6', category: 'papan', price: null, image: IMG + 'bunga-papan-grand-opening.jpg', isIgImported: true,
                 name: 'Bunga Papan Congratulations / Grand Opening',
                 description: 'Karangan bunga papan ucapan selamat untuk grand opening dengan bunga segar di bagian atas dan bawah.'
+            },
+            {
+                id: 'p7', category: 'buket', price: 30000, priceFrom: true, image: IMG + 'buket-gerbera-pink-soft-30.jpg',
+                name: 'Buket Gerbera & Mawar Pink Soft',
+                description: 'Gerbera pink, mawar, krisan, dan aster putih dengan wrapping transparan pink serta pita satin putih.'
+            },
+            {
+                id: 'p8', category: 'buket', price: 50000, priceFrom: true, image: IMG + 'buket-mix-pink-gerbera-50.jpg',
+                name: 'Buket Mix Mawar, Gerbera & Krisan Pink',
+                description: 'Mawar pink, gerbera, krisan magenta, dan aster putih dengan wrapping koran "I love you" dan pita merah.'
             }
         ].map(p => (p.isIgImported ? { ...p, igLink: postUrl(p.image.split('/').pop().replace('.jpg','')) } : p));
 
@@ -897,6 +907,7 @@
 
         const formatRupiah = n => n ? 'Rp ' + Number(n).toLocaleString('id-ID') : 'Chat Admin';
         const priceNote = n => n ? ` (${formatRupiah(n)})` : '';
+        const priceLabel = p => (p.priceFrom && p.price ? 'Mulai ' : '') + formatRupiah(p.price);
 
         const esc = value => String(value).replace(/[&<>"']/g, c => (
             { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
@@ -1023,7 +1034,7 @@
                         <div class="p-5 space-y-2">
                             <h3 data-action="open-product" data-id="${esc(p.id)}" class="font-serif font-bold text-base text-brand-900 group-hover:text-brand-600 transition cursor-pointer">${esc(p.name)}</h3>
                             <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">${esc(p.description)}</p>
-                            <p class="text-base font-bold text-brand-600 pt-1">${formatRupiah(p.price)}</p>
+                            <p class="text-base font-bold text-brand-600 pt-1">${priceLabel(p)}</p>
                         </div>
                     </div>
                     <div class="px-5 pb-5 pt-0 flex gap-2">
@@ -1114,7 +1125,7 @@
                         </div>
                         <h3 class="font-serif text-2xl font-bold text-brand-900">${esc(product.name)}</h3>
                         <p class="text-xs text-gray-600 leading-relaxed">${esc(product.description)}</p>
-                        <p class="text-xl font-bold text-brand-600">${formatRupiah(product.price)}</p>
+                        <p class="text-xl font-bold text-brand-600">${priceLabel(product)}</p>
 
                         <div class="pt-2 flex flex-col gap-2">
                             ${product.price ? `<button type="button" data-action="add-cart" data-id="${esc(product.id)}" data-close-modal
@@ -1344,7 +1355,7 @@
             },
             'quick-wa': el => {
                 const p = findProduct(el.dataset.id);
-                if (p) openWhatsApp(`Halo vdlabellaflorist, saya berminat memesan "${p.name}"${priceNote(p.price)}. Mohon konfirmasi stok dan waktu pengiriman.`);
+                if (p) openWhatsApp(`Halo vdlabellaflorist, saya berminat memesan "${p.name}"${p.price ? ` (${priceLabel(p)})` : ''}. Mohon konfirmasi stok dan waktu pengiriman.`);
             },
             'quick-wa-ig': el => {
                 const post = instagramFeedData.find(i => i.id === el.dataset.id);
